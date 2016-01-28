@@ -11,5 +11,5 @@ class WordCount {
 
 object WordCount{
   //val conf=new SparkConf().setAppName("WordCount").setMaster()
-
+ //
 }
