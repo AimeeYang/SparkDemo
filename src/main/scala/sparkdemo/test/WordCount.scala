@@ -25,8 +25,10 @@ object WordCount{
     val conf=new SparkConf().setAppName("Spark Exercise: Spark Version Word Count Program")
     val sc = new SparkContext(conf)
     val textFile=sc.textFile(args(0))
-    val wordCounts=textFile.flatMap(line=>line.split(" ")).map(
-                            word=>(word,1)).reduceByKey((a,b)=>a+b)
+   /* val wordCounts=textFile.flatMap(line=>line.split(" ")).map(
+                            word=>(word,1)).reduceByKey((a,b)=>a+b)*/
+   val wordCounts=textFile.flatMap(line=>line.split(",")).map(
+     word=>(word,1)).reduceByKey((a,b)=>a+b)
     println("Word Count program running results: ")
     wordCounts.collect().foreach(e=>{
       val (k,v)=e
