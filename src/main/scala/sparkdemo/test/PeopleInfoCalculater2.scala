@@ -33,7 +33,7 @@ object PeopleInfoCalculater2 {
     //==for test
     peopleDataRDD.map(_.split(" ")).collect().foreach(a=>println(a))
     //==end for test
-    val rowRDD: RDD[Row]=peopleDataRDD.map(_.split(" ")).map(eachRow=>Row(eachRow(0),eachRow(1),eachRow(2)))
+    val rowRDD: RDD[Row]=peopleDataRDD.map(_.split(" ")).map(eachRow=>Row(eachRow(0),eachRow(1).trim,eachRow(2).trim))
     val peopleDF=sqlCon.createDataFrame(rowRDD,schema)
     peopleDF.registerTempTable("people")
     //get the male people whose height is more than 180
